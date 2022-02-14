@@ -50,12 +50,13 @@ ___________________
         if (board[i] == "O" or board[i] == "X"):
             blank_board = blank_board.replace(str(i), board[i])
         else:
-            blank_board = blank_board.replace(str(i), ' ')
+            blank_board = blank_board.replace(str(i), "")
     print(blank_board)
 
 def players_letter():
     """
-    Let's the player choose which letter they want to be. Program will then return the players letter first and the computer's letter second.
+    Let's the player choose which letter to play with. 
+    Program will then return the players letter first and the computer's letter second.
     """
     letter = ""
     while not (letter == 'X' or letter == 'O'):
@@ -66,3 +67,12 @@ def players_letter():
         return ["X", "O"]
     else:
         return ["O", "X"]
+
+def first_player():
+    """
+    Random function to randomly choose the player who goes first.
+    """
+    if random.randint(0, 1) == 0:
+        return "Computer goes first"
+    else:
+        return "Player goes first"    
