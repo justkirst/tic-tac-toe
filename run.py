@@ -47,8 +47,22 @@ ___________________
 """
 
     for i in range(1,10):
-        if (board[i] == 'O' or board[i] == 'X'):
+        if (board[i] == "O" or board[i] == "X"):
             blank_board = blank_board.replace(str(i), board[i])
         else:
             blank_board = blank_board.replace(str(i), ' ')
     print(blank_board)
+
+def players_letter():
+    """
+    Let's the player choose which letter they want to be. Program will then return the players letter first and the computer's letter second.
+    """
+    letter = ""
+    while not (letter == 'X' or letter == 'O'):
+        print("Do you want to play as X or O?\n")
+        letter = input().upper()
+    
+    if letter == "X":
+        return ["X", "O"]
+    else:
+        return ["O", "X"]
