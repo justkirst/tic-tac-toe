@@ -107,3 +107,58 @@ def winner(bo, le):
     (bo[3] == le and bo[6] == le and bo[9] == le) or # down the right side
     (bo[3] == le and bo[5] == le and bo[7] == le) or # diagonal
     (bo[1] == le and bo[5] == le and bo[9] == le)) # diagonal
+
+def copy_board(board):
+    """
+    Duplicate the board and return it as the duplicate.
+    """
+    dupe_board = []
+
+    for i in board:
+        dupe_board.append(i)
+
+    return dupe_board
+
+def free_space(board, move):
+    """
+    Function to return true if the requested next move is free on the current board.
+    """
+    return board[move] == ""
+
+def player_move(board):
+    """
+    This function allows the playter to choose their next move.
+    """
+    move = ""
+    while move not in "1 2 3 4 5 6 7 8 9".split() or not free_space(board, int(move)):
+        print("What is your next move? (1-9)")
+        move = input()
+    return int(move)
+
+def random_move(board, moves_list):
+    """
+    Function will return a valid move from the current board.
+    """
+    possible_moves = []
+    for i in moves_list:
+        if free_space(board, i):
+            possible_moves.append(i)
+
+    if len(possible_moves) != 0:
+        return random.choice(possible_moves)
+    else:
+        return None
+
+def computer_move(board, computer_letter):
+  
+    if computer_letter == "X":
+        player_letter = "O"
+    else:
+        player_letter = "X"
+
+    for i in range(1, 10):
+        copy = copy_board(board)
+        if free_space(copy, i):
+            make_move(copy, computer_letter, i)
+            if winner(copy, computer_letter):
+                return i
