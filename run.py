@@ -162,3 +162,76 @@ def computer_move(board, computer_letter):
             make_move(copy, computer_letter, i)
             if winner(copy, computer_letter):
                 return i
+
+    for i in range(1, 10):
+        copy = copy_board(board)
+        if free_space(copy, i):
+            make_move(copy, player_letter, i)
+            if winner(copy, player_letter):
+                return i
+
+    move = random_move(board, [1, 3, 7, 9])
+    if move != None:
+        return move
+
+    if free_space(board, 5):
+        return 5
+
+    return random_move(board, [2, 4, 6, 8])
+
+def full_board(board):
+    # Return True if every space on the board has been taken. Otherwise return False.
+    for i in range(1, 10):
+        if free_space(board, i):
+            return False
+    return True
+
+
+print("Welcome to Tic Tac Toe!")
+
+while True:
+    """
+    Function for reseting the board
+    """
+    the_board = [""] * 10
+    player_letter, computer_letter = players_letter()
+    turn = first_player()
+    print("The " + turn + " will go first.")
+    game_play = True
+
+    while game_play:
+        if turn == "player":
+            players_board(the_board)
+            move = player_move(the_board)
+            make_move(the_board, player_letter, move)
+
+            if winner(the_board, player_letter):
+                players_board(the_board)
+                print("Woohoo! You have won the game!")
+                game_play = False
+            else:
+                if full_board(the_board):
+                    players_board(the_board)
+                    print("This game was a tie. Better luck next time!")
+                    break
+                else:
+                    turn = "computer"
+
+        else:
+            move = computer_move(the_board, computer_letter)
+            make_move(the_board, computer_letter, move)
+
+            if winner(the_board, computer_letter):
+                players_board(the_board)
+                print("The computer beat you! You lose. Better luck next time!")
+                game_play = False
+            else:
+                if full_board(the_board):
+                    players_board(the_board)
+                    print("This game was a tie. Better luck next time!")
+                    break
+                else:
+                    turn = "player"
+
+    if not new_game():
+        break
