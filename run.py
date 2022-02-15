@@ -75,4 +75,35 @@ def first_player():
     if random.randint(0, 1) == 0:
         return "Computer goes first"
     else:
-        return "Player goes first"    
+        return "Player goes first"  
+
+def new_game():
+    """
+    This function will create a new game if value returns true
+    """  
+    response = ""
+    while response not in yes_no:
+        response = input("Do you want to play again?\n Yes or No\n")
+    if response == "yes":
+        print("Great! Let's play again")
+    elif response == "no":
+        print("Not to worry. You can come back at a later date to play!")
+    else:
+        print("I didn't understand that.\n")
+
+
+def make_move(board, letter, move):
+    board[move] = letter
+
+def winner(bo, le):
+    """
+    Depending on the board and the player's letter, this function will return True if that player has won.
+    """
+    return ((bo[1] == le and bo[2] == le and bo[3] == le) or # across the top
+    (bo[4] == le and bo[5] == le and bo[6] == le) or # across the middle
+    (bo[7] == le and bo[8] == le and bo[9] == le) or # across the bottom
+    (bo[1] == le and bo[4] == le and bo[7] == le) or # down the left side
+    (bo[2] == le and bo[5] == le and bo[8] == le) or # down the middle
+    (bo[3] == le and bo[6] == le and bo[9] == le) or # down the right side
+    (bo[3] == le and bo[5] == le and bo[7] == le) or # diagonal
+    (bo[1] == le and bo[5] == le and bo[9] == le)) # diagonal
