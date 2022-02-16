@@ -3,28 +3,24 @@ import random
 # Setup
 
 yes_no = ["y", "n"]
+response = ""
 
-# Start of the game and instructions
+name = ""
+while name == "" :
+    name = input("What is your name?\n")
+    if not name.isalpha():
+        print ("Please enter a valid name without any special characters.\n")
+print("Hi " + name + "!")
 
-def game_setup():
-    name = ""
-    while name == "" :
-        name = input("What is your name?\n")
-        if not name.isalpha():
-            print ("Please enter a valid name without any special characters.")
-    print("Hi " + name + "!")
-
-    response = ""
-    while response not in yes_no:
-        response = input("Would you like to start a new game?\n (Y)es or (N)o?\n")
-        if response == "yes":
-            print("Great! Let's get started!")
-            game_intro()
-        elif response == "no":
-            print("Not to worry. You can come back at a later date to play!")
-            quit()
-        else:
-            print("I didn't understand that.\n")
+while response not in yes_no:
+    response = input("Would you like to start a new game?\n (Y)es or (N)o?\n")
+    if response == "y":
+        print("Great! Let's get started!")
+    elif response == "n":
+        print("Not to worry. You can come back at a later date to play!")
+        quit()
+    else:
+        print("Please enter Y or N to continue.\n")
 
 # Functions to build the board and let the player choose their playing piece
 
@@ -85,7 +81,7 @@ def new_game():
     """  
     response = ""
     while response not in yes_no:
-        response = input("Do you want to play again?\n Yes or No\n")
+        response = input("Do you want to play again?\n (Y)es or (N)o\n")
     if response == "y":
         print("Great! Let's play again")
         game_intro()
@@ -102,6 +98,7 @@ def make_move(board, letter, move):
 def winner(bo, le):
     """
     Depending on the board and the player's letter, this function will return True if that player has won.
+    I'm using bo instead of board and le instead of letter for ease.
     """
     return ((bo[1] == le and bo[2] == le and bo[3] == le) or # across the top
     (bo[4] == le and bo[5] == le and bo[6] == le) or # across the middle
@@ -134,10 +131,23 @@ def player_move(board):
     This function allows the playter to choose their next move.
     """
     move = ""
-    while move not in "1 2 3 4 5 6 7 8 9".split() or not free_space(board, int(move)):
+    progress = False
+    while not progress:
+
         print("What is your next move? (1-9)")
         move = input()
-    return int(move)
+
+        if len(move) == 1 and move != 0:
+            if free_space(board, int(move)):
+                print(type(move), move)
+                progress = True
+            else:
+                print("This space is already taken, please try again")
+        else:
+            print("Please select numbers between 1 and 9 only")
+
+    return int(move)                   
+    
 
 def random_move(board, moves_list):
     """
@@ -191,6 +201,7 @@ def full_board(board):
     return True
 
 def game_intro():
+    
     print("  _                  _                                            ")
 print(" (_|   |   |_/      | |                                           ")
 print("   |   |   |    _   | |   __    __    _  _  _     _     _|_   __  ")
@@ -250,4 +261,5 @@ while True:
 
     if not new_game():
         break
+
 game_intro()
