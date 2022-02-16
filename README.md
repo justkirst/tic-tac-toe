@@ -85,4 +85,4 @@ The app was deployed via Heroku using Code Institute’s mock terminal.
 
 ## Credits
 
-* For the FIGlet fonts, I used [Doodle Nerd](https://doodlenerd.com/web-tool/figlet-generator)
+* For the FIGlet Welcome Screen font, I used [Doodle Nerd](https://doodlenerd.com/web-tool/figlet-generator)
