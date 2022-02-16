@@ -27,12 +27,25 @@ To build a terminal version of the classic Tic Tac Toe Game that is only one pla
 ### Design
 
 * I wanted the game to have a retro feel with the font and grid to match the terminal view on Heroku.
-* I used the FIGlet fonts to generate the style of fonts that I wanted for the title, winner and loser messages.
-*  -- Image as background-- If time--
+* I used the FIGlet fonts to generate the style of fonts that I wanted for the title message.
 
-## Features
+## Current Features
 
--- Screenshots--- after each bullet point
+* When the app is first started, the app will ask for the player's name
+  
+  ![Screen asking for player's name](assets/screenshots/name-screen.png)
+
+* Welcome Screen
+  
+  ![Welcome Screen](assets/screenshots/welcome.png)
+
+* The blank playing board before any moves are taken
+  
+  ![Image of the blank board](assets/screenshots/blank-board.png)
+
+* After the game has finished with the full board. In this example it is a tie with the computer
+  
+  ![Image of the board at the end of the game](assets/screenshots/end-game.png)
 
 ## Future Features
 
@@ -72,5 +85,4 @@ The app was deployed via Heroku using Code Institute’s mock terminal.
 
 ## Credits
 
----Background Image---
----FIGlet Fonts---
+* For the FIGlet fonts, I used [Doodle Nerd](https://doodlenerd.com/web-tool/figlet-generator)
