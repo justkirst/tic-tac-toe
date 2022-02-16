@@ -8,7 +8,7 @@ I wanted to make this game digitally accessible and against the computer so one 
 
 The live site is available at [Tic Tac Toe Game](https://tic-tac-toe16.herokuapp.com/) on Heroku.
 
---- Am I responsive Image ---
+![Screenshot from Am I Responsive website](assets/screenshots/am-i-responsive.png)
 
 ## How to Play
 
