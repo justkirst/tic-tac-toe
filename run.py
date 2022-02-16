@@ -6,7 +6,7 @@ yes_no = ["y", "n"]
 response = ""
 
 name = ""
-while name == "" :
+while name == "":
     name = input("What is your name?\n")
     if not name.isalpha():
         print ("Please enter a valid name without any special characters.\n")
@@ -24,11 +24,12 @@ while response not in yes_no:
 
 # Functions to build the board and let the player choose their playing piece
 
+
 def players_board(board):
     """
     This function builds the Tic Tac Toe board.
     """
-    blank_board="""
+    blank_board = """
 ___________________
 |     |     |     |
 | 1 |   2 |   3  |
@@ -44,27 +45,29 @@ ___________________
 |-----------------|
 """
 
-    for i in range(1,10):
+    for i in range(1, 10):
         if (board[i] == "O" or board[i] == "X"):
             blank_board = blank_board.replace(str(i), board[i])
         else:
             blank_board = blank_board.replace(str(i), "")
     print(blank_board)
 
+
 def players_letter():
     """
-    Let's the player choose which letter to play with. 
-    Program will then return the players letter first and the computer's letter second.
+    Let's the player choose which letter to play with.
+    App will return the players letter first and the computer's letter second.
     """
     letter = ""
     while not (letter == "X" or letter == "O"):
         print("Do you want to play as X or O?\n")
         letter = input().upper()
-    
+
     if letter == "X":
         return ["X", "O"]
     else:
         return ["O", "X"]
+
 
 def first_player():
     """
@@ -73,12 +76,13 @@ def first_player():
     if random.randint(0, 1) == 0:
         return "computer"
     else:
-        return "player"  
+        return "player"
+
 
 def new_game():
     """
     This function will create a new game if value returns true
-    """  
+    """
     response = ""
     while response not in yes_no:
         response = input("Do you want to play again?\n (Y)es or (N)o\n")
@@ -95,19 +99,21 @@ def new_game():
 def make_move(board, letter, move):
     board[move] = letter
 
+
 def winner(bo, le):
     """
-    Depending on the board and the player's letter, this function will return True if that player has won.
+    Reliant on board and player's letter, function returns True if player won.
     I'm using bo instead of board and le instead of letter for ease.
     """
-    return ((bo[1] == le and bo[2] == le and bo[3] == le) or # across the top
-    (bo[4] == le and bo[5] == le and bo[6] == le) or # across the middle
-    (bo[7] == le and bo[8] == le and bo[9] == le) or # across the bottom
-    (bo[1] == le and bo[4] == le and bo[7] == le) or # down the left side
-    (bo[2] == le and bo[5] == le and bo[8] == le) or # down the middle
-    (bo[3] == le and bo[6] == le and bo[9] == le) or # down the right side
-    (bo[3] == le and bo[5] == le and bo[7] == le) or # diagonal
-    (bo[1] == le and bo[5] == le and bo[9] == le)) # diagonal
+    return ((bo[1] == le and bo[2] == le and bo[3] == le) or   # across the top
+            (bo[4] == le and bo[5] == le and bo[6] == le) or   # across the middle
+            (bo[7] == le and bo[8] == le and bo[9] == le) or    # across the bottom
+            (bo[1] == le and bo[4] == le and bo[7] == le) or   # down the left side
+            (bo[2] == le and bo[5] == le and bo[8] == le) or   # down the middle
+            (bo[3] == le and bo[6] == le and bo[9] == le) or   # down the right side
+            (bo[3] == le and bo[5] == le and bo[7] == le) or   # diagonal
+            (bo[1] == le and bo[5] == le and bo[9] == le))   # diagonal
+
 
 def copy_board(board):
     """
@@ -120,11 +126,13 @@ def copy_board(board):
 
     return dupe_board
 
+
 def free_space(board, move):
     """
-    Function to return true if the requested next move is free on the current board.
+    Function to return true if the next move is free on the current board.
     """
     return board[move] == ""
+
 
 def player_move(board):
     """
@@ -146,8 +154,8 @@ def player_move(board):
         else:
             print("Please select numbers between 1 and 9 only")
 
-    return int(move)                   
-    
+    return int(move)
+
 
 def random_move(board, moves_list):
     """
@@ -163,8 +171,9 @@ def random_move(board, moves_list):
     else:
         return None
 
+
 def computer_move(board, computer_letter):
-  
+
     if computer_letter == "X":
         player_letter = "O"
     else:
@@ -193,15 +202,19 @@ def computer_move(board, computer_letter):
 
     return random_move(board, [2, 4, 6, 8])
 
+
 def full_board(board):
-    # Return True if every space on the board has been taken. Otherwise return False.
+    """
+    Return True if every space on the board is taken. Otherwise return False.
+    """
     for i in range(1, 10):
         if free_space(board, i):
             return False
     return True
 
+
 def game_intro():
-    
+
     print("  _                  _                                            ")
 print(" (_|   |   |_/      | |                                           ")
 print("   |   |   |    _   | |   __    __    _  _  _     _     _|_   __  ")
