@@ -2,7 +2,7 @@ import random
 
 # Setup
 
-yes_no = ["yes", "no"]
+yes_no = ["y", "n"]
 response = ""
 
 # Start of the game and instructions
@@ -15,7 +15,7 @@ while name == "" :
 print("Hi " + name + "!")
 
 while response not in yes_no:
-    response = input("Would you like to start a new game?\n Yes or No?\n")
+    response = input("Would you like to start a new game?\n (Y)es or (N)o?\n")
     if response == "yes":
         print("Great! Let's get started!")
     elif response == "no":
@@ -59,7 +59,7 @@ def players_letter():
     Program will then return the players letter first and the computer's letter second.
     """
     letter = ""
-    while not (letter == 'X' or letter == 'O'):
+    while not (letter == "X" or letter == "O"):
         print("Do you want to play as X or O?\n")
         letter = input().upper()
     
@@ -73,9 +73,9 @@ def first_player():
     Random function to randomly choose the player who goes first.
     """
     if random.randint(0, 1) == 0:
-        return "Computer goes first"
+        return "computer"
     else:
-        return "Player goes first"  
+        return "player"  
 
 def new_game():
     """
@@ -84,10 +84,12 @@ def new_game():
     response = ""
     while response not in yes_no:
         response = input("Do you want to play again?\n Yes or No\n")
-    if response == "yes":
+    if response == "y":
         print("Great! Let's play again")
-    elif response == "no":
+        game_intro()
+    elif response == "n":
         print("Not to worry. You can come back at a later date to play!")
+        quit()
     else:
         print("I didn't understand that.\n")
 
@@ -171,7 +173,7 @@ def computer_move(board, computer_letter):
                 return i
 
     move = random_move(board, [1, 3, 7, 9])
-    if move != None:
+    if move is not None:
         return move
 
     if free_space(board, 5):
@@ -186,8 +188,19 @@ def full_board(board):
             return False
     return True
 
+def game_intro():
+    print("  _                  _                                            ")
+print(" (_|   |   |_/      | |                                           ")
+print("   |   |   |    _   | |   __    __    _  _  _     _     _|_   __  ")
+print("   |   |   |   |/   |/   /     /  \_ / |/ |/ |   |/      |   /  \_")
+print("    \_/ \_/    |__/ |__/ \___/ \__/    |  |  |_/ |__/    |_/ \__/ ")
 
-print("Welcome to Tic Tac Toe!")
+
+print("______              ______                 ______           ")
+print(" (_) |   o           (_) |                  (_) |             ")
+print("     |        __         |    __,    __         |    __    _  ")
+print("   _ |   |   /         _ |   /  |   /         _ |   /  \_ |/  ")
+print("   (_/    |_/ \___/    (_/    \_/|_/ \___/    (_/    \__/  |__/")
 
 while True:
     """
@@ -235,3 +248,4 @@ while True:
 
     if not new_game():
         break
+game_intro()
