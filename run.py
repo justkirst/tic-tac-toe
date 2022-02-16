@@ -97,6 +97,9 @@ def new_game():
 
 
 def make_move(board, letter, move):
+    """
+    Function for creating moves on the board
+    """
     board[move] = letter
 
 
@@ -173,6 +176,9 @@ def random_move(board, moves_list):
 
 
 def computer_move(board, computer_letter):
+    """
+    Function for creating computer moves on the board
+    """
 
     if computer_letter == "X":
         player_letter = "O"
@@ -214,6 +220,9 @@ def full_board(board):
 
 
 def game_intro():
+    """
+    Function for the game intro loops
+    """
 
     print("  _                  _                                            ")
 print(" (_|   |   |_/      | |                                           ")
