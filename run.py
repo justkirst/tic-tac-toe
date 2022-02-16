@@ -3,26 +3,28 @@ import random
 # Setup
 
 yes_no = ["y", "n"]
-response = ""
 
 # Start of the game and instructions
 
-name = ""
-while name == "" :
-    name = input("What is your name?\n")
-    if not name.isalpha():
-        print ("Please enter a valid name")
-print("Hi " + name + "!")
+def game_setup():
+    name = ""
+    while name == "" :
+        name = input("What is your name?\n")
+        if not name.isalpha():
+            print ("Please enter a valid name without any special characters.")
+    print("Hi " + name + "!")
 
-while response not in yes_no:
-    response = input("Would you like to start a new game?\n (Y)es or (N)o?\n")
-    if response == "yes":
-        print("Great! Let's get started!")
-    elif response == "no":
-        print("Not to worry. You can come back at a later date to play!")
-        quit()
-    else:
-        print("I didn't understand that.\n")
+    response = ""
+    while response not in yes_no:
+        response = input("Would you like to start a new game?\n (Y)es or (N)o?\n")
+        if response == "yes":
+            print("Great! Let's get started!")
+            game_intro()
+        elif response == "no":
+            print("Not to worry. You can come back at a later date to play!")
+            quit()
+        else:
+            print("I didn't understand that.\n")
 
 # Functions to build the board and let the player choose their playing piece
 
